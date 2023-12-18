@@ -16,6 +16,10 @@ io.on("connection", (socket) => {
   socket.on("moving", (vals) => {
     socket.broadcast.emit("moving", vals);
   });
+
+  socket.on("objet:added", (json) => {
+    socket.broadcast.emit("objet:added", json);
+  });
 });
 
 httpServer.listen(3000);

@@ -17,6 +17,10 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("moving", vals);
   });
 
+  socket.on("scaling", (vals) => {
+    socket.broadcast.emit("scaling", vals);
+  });
+
   socket.on("objet:added", (json) => {
     socket.broadcast.emit("objet:added", json);
   });

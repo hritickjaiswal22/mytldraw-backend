@@ -21,6 +21,14 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("scaling", vals);
   });
 
+  socket.on("rotating", (vals) => {
+    socket.broadcast.emit("rotating", vals);
+  });
+
+  socket.on("removed", (vals) => {
+    socket.broadcast.emit("removed", vals);
+  });
+
   socket.on("objet:added", (json) => {
     socket.broadcast.emit("objet:added", json);
   });

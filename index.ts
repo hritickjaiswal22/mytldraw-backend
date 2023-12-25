@@ -80,6 +80,10 @@ io.on("connection", (socket) => {
   socket.on(ACTIONS["OBJECT:ADDED"], ({ roomId, json }) => {
     socket.to(roomId).emit(ACTIONS["OBJECT:ADDED"], json);
   });
+
+  socket.on(ACTIONS["TEXT:CHANGED"], ({ roomId, json }) => {
+    socket.to(roomId).emit(ACTIONS["TEXT:CHANGED"], json);
+  });
 });
 
 httpServer.listen(3000);

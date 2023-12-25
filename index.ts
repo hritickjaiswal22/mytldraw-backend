@@ -48,6 +48,19 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("disconnecting", () => {
+    // This event is fired automatically when a client disconnects
+
+    const rooms = [...socket.rooms];
+    rooms.forEach((roomId) => {
+      socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
+        socketId: socket.id,
+        username: userSocketMap[socket.id],
+      });
+    });
+    delete userSocketMap[socket.id];
+  });
+
   socket.on("moving", (vals) => {
     socket.broadcast.emit("moving", vals);
   });

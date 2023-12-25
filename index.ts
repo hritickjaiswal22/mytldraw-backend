@@ -7,6 +7,8 @@ import { Server } from "socket.io";
 import cors from "cors";
 
 function getAllConnectedClients(roomId: string) {
+  // io.sockets.adapter.rooms.get(roomId) -> returns a set of all unique sockets or clients associated with that room
+
   // Map
   return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(
     (socketId) => {
@@ -34,7 +36,7 @@ io.on("connection", (socket) => {
 
   socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
     userSocketMap[socket.id] = username;
-    socket.join(roomId); // Joins a room or if room does'nt exist creates one
+    socket.join(roomId); // Joins a room with roomId or if room does'nt exist creates one with that id
     const clients = getAllConnectedClients(roomId);
 
     clients.forEach(({ socketId }) => {

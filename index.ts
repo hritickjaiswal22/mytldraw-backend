@@ -61,24 +61,24 @@ io.on("connection", (socket) => {
     delete userSocketMap[socket.id];
   });
 
-  socket.on("moving", (vals) => {
-    socket.broadcast.emit("moving", vals);
+  socket.on("moving", ({ roomId, json }) => {
+    socket.to(roomId).emit("moving", json);
   });
 
-  socket.on("scaling", (vals) => {
-    socket.broadcast.emit("scaling", vals);
+  socket.on("scaling", ({ roomId, json }) => {
+    socket.to(roomId).emit("scaling", json);
   });
 
-  socket.on("rotating", (vals) => {
-    socket.broadcast.emit("rotating", vals);
+  socket.on("rotating", ({ roomId, json }) => {
+    socket.to(roomId).emit("rotating", json);
   });
 
-  socket.on("removed", (vals) => {
-    socket.broadcast.emit("removed", vals);
+  socket.on("removed", ({ roomId, json }) => {
+    socket.to(roomId).emit("removed", json);
   });
 
-  socket.on("objet:added", (json) => {
-    socket.broadcast.emit("objet:added", json);
+  socket.on("objet:added", ({ roomId, json }) => {
+    socket.to(roomId).emit("objet:added", json);
   });
 });
 

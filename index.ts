@@ -61,24 +61,24 @@ io.on("connection", (socket) => {
     delete userSocketMap[socket.id];
   });
 
-  socket.on("moving", ({ roomId, json }) => {
-    socket.to(roomId).emit("moving", json);
+  socket.on(ACTIONS["OBJECT:MOVING"], ({ roomId, json }) => {
+    socket.to(roomId).emit(ACTIONS["OBJECT:MOVING"], json);
   });
 
-  socket.on("scaling", ({ roomId, json }) => {
-    socket.to(roomId).emit("scaling", json);
+  socket.on(ACTIONS["OBJECT:SCALING"], ({ roomId, json }) => {
+    socket.to(roomId).emit(ACTIONS["OBJECT:SCALING"], json);
   });
 
-  socket.on("rotating", ({ roomId, json }) => {
-    socket.to(roomId).emit("rotating", json);
+  socket.on(ACTIONS["OBJECT:ROTATING"], ({ roomId, json }) => {
+    socket.to(roomId).emit(ACTIONS["OBJECT:ROTATING"], json);
   });
 
-  socket.on("removed", ({ roomId, json }) => {
-    socket.to(roomId).emit("removed", json);
+  socket.on(ACTIONS["OBJECT:REMOVED"], ({ roomId, json }) => {
+    socket.to(roomId).emit(ACTIONS["OBJECT:REMOVED"], json);
   });
 
-  socket.on("objet:added", ({ roomId, json }) => {
-    socket.to(roomId).emit("objet:added", json);
+  socket.on(ACTIONS["OBJECT:ADDED"], ({ roomId, json }) => {
+    socket.to(roomId).emit(ACTIONS["OBJECT:ADDED"], json);
   });
 });
 

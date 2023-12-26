@@ -77,6 +77,10 @@ io.on("connection", (socket) => {
     socket.to(roomId).emit(ACTIONS["OBJECT:REMOVED"], json);
   });
 
+  socket.on(ACTIONS["OBJECT:CHANGED"], ({ roomId, ...rest }) => {
+    socket.to(roomId).emit(ACTIONS["OBJECT:CHANGED"], rest);
+  });
+
   socket.on(ACTIONS["OBJECT:ADDED"], ({ roomId, json }) => {
     socket.to(roomId).emit(ACTIONS["OBJECT:ADDED"], json);
   });

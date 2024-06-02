@@ -5,6 +5,9 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 function getAllConnectedClients(roomId: string) {
   // io.sockets.adapter.rooms.get(roomId) -> returns a set of all unique sockets or clients associated with that room
@@ -23,11 +26,11 @@ function getAllConnectedClients(roomId: string) {
 const userSocketMap: UserSocketMapType = {};
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: process.env.FRONTEND_DOMAIN }));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_DOMAIN,
   },
 });
 
